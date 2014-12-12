@@ -1,10 +1,15 @@
 
 /*
- * Most of this is copied verbatim from the OSDev wiki, except I modified
- *  the string to align with line length, so the ``marching letters''
+ * Most of this is from the OSDev wiki, except of course translated from
+ *  NASM to GAS syntax, and I modified the string to align with line
+ *  length on VirtualBox, so the ``marching letters''
  *  effect isn't present. And I added a BIOS delay IVT call (int $0x15)
  *  between printing each char so I don't burn a ridiculous number of
  *  clock cycles
+ *
+ *  Worth noting that, unlike in NASM, the linker must handle any
+ *    relocations, so remember all of this is happening at 0x7c00 (at
+ *    least for the moment, and of course initially)
  */
 
   .globl _start
@@ -13,6 +18,10 @@ _start:
   .text
   jmp Start
 str:
+  /* from what I can tell, the screen's 57 chars wide, so 3*19 chars
+   *  is precisely one line. I know that's not how the code below
+   *  behaves, and I'm also aware that this should be determined via
+   *  another int $0x10 call. */
   .ascii "Hello World!       "
 str_end:
 
