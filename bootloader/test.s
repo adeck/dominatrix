@@ -16,69 +16,71 @@
   .code16
 _start:
   .text
-  jmp Start
-str:
-  /* from what I can tell, the screen's 57 chars wide, so 3*19 chars
-   *  is precisely one line. I know that's not how the code below
-   *  behaves, and I'm also aware that this should be determined via
-   *  another int $0x10 call. */
-  .ascii "Hello World!       "
-str_end:
+  jmp init
+prompt_str:
+  .ascii "trix >"
+prompt_str_end:
 
-Start:  mov $0x0002,%bx
-        mov $1,%cx
+
+init:
+        call print_prompt
+loop:
+        call wait
+        call read
+        or %ah,%ah
+        je loop
+        call eval
+        jmp init
+
+print_prompt: 
+        /* mov $0x0000,%dx */
         xor %dx,%dx
-        mov %dx,%ds
-        cld
+        mov %dx,%es  /* apparently, segment registers can only be
+                      *   set by weird, special instructions or by
+                      *   copying from a general register. So, since
+                      *   %dx happens to be null already...
+                      */
+        /* because "trix >" is six characters */
+        mov $0x0006,%cx
+        mov $prompt_str,%bp
+        call print
+        ret
 
-Print:  mov $str,%si
-
-Char:   mov $0x2,%ah
+/*  dh, dl -- row and column
+ *  cx -- string length
+ *  es:bp -- pointer to string
+ */
+print:
+        /* chars only, move cursor */
+        mov $0x1301,%ax
+        /* page 0, bgcolor 0 (black), color 2 (green) */
+        mov $0x0002,%bx
         int $0x10
-        lodsb
+        ret
 
-        mov $0x9,%ah
-        int $0x10
-Wait:   
+
+/* doesn't modify any registers */
+wait:   
         push %ax
         push %cx
         push %dx
         mov $0x86,%ah
         /* each tick is 1 us, so 200,000 (0x00030d40) is
-         *    0.2 seconds, or 5 chars / second */
+         *    0.2 seconds, or 5 chars / second
+         */
         mov $0x0003,%cx
         mov $0x0d40,%dx 
         int $0x15
         pop %dx
         pop %cx
         pop %ax
+        ret
 
-        inc %dl
+/* TODO */
+read:   mov 0,%ah
+        ret
 
-        cmp %dl,80
-        jne Skip
-        xor %dl,%dl
-        inc %dh
-
-        cmp %dh,25
-        jne Skip
-        xor %dh,%dh
-
-
-Skip:   cmp $str_end,%si
-        jne Char
-        jmp Print
-
-
-
-
-
-
-
-
-
-
-
-
+/* TODO */
+eval:   ret
 
 
