@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
+if [ $# -gt 0 ]
+then
+  TRIX_HOME="$1"
+else
+  TRIX_HOME="/home/enveloper/trix"
+fi
 head -c 510 /dev/zero > /dev/sdb
 echo "### orig ###"
 head -c 512 /dev/sdb | od -h
-cat /home/enveloper/os/bootloader/prog > /dev/sdb
+cat "$TRIX_HOME/bootloader/prog" > /dev/sdb
 echo "### loaded ###"
 head -c 512 /dev/sdb | od -h
 sync ; sync ; sync
