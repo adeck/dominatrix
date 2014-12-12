@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+head -c 510 /dev/zero > /dev/sdb
+echo "### orig ###"
+head -c 512 /dev/sdb | od -h
+cat /home/enveloper/os/bootloader/prog > /dev/sdb
+echo "### loaded ###"
+head -c 512 /dev/sdb | od -h
+sync ; sync ; sync
+sync ; sync ; sync
+sync ; sync ; sync
+
+
