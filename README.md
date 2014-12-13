@@ -6,7 +6,13 @@ A UNIX-like operating system with bootloader
 But right now...
 ----------------
 
-...It's just a simple "hello, world" bootloader, which uses BIOS interrupt calls to write awesome green characters to the screen, with a sufficient time delay between writes that you get to enjoy every tangy, wood-smoked, sun-dried, blueberry-scented character in the privacy of your own home at a pace neither jarring nor sluggish.
+...It's just a simple bootloader.
+Currently, my focus for this project is on:
+- making a simple interactive REPL for the bootloader,
+- storing config information on the first few sectors of the drive,
+- scanning the drive for potentially viable operating systems and branching to them,
+- configuring hardware, and (of course)
+- entering a more conventional operating mode (in preparation for more traditional operating system operation).
 
-(More to come! / Stay tuned! / Don't touch that dial!)
+The bootloader itself is all assembly thus far, but once I've reverse-engineered the BIOS interrupt routines (which I'll do by copying the BIOS from 0xFFFF0000 --> 0xFFFFFFFF onto some free drive sectors and then disassembling) I'll be able to easily transition to C or C++. OTOH, I'll only see transitioning to an HLL as necessary IFF the bootloader starts to bloat to >2 KB.
 
