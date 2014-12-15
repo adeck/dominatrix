@@ -10,7 +10,7 @@ But right now...
 Currently, my focus for this project is on:
 - making a simple interactive REPL for the bootloader,
 - storing config information on the first few sectors of the drive,
-- scanning the drive for potentially viable operating systems and branching to them,
+- scanning the drive for potentially viable operating systems and branching to them (at the moment I'd only be looking to support the multiboot spec. as it applies to ELF),
 - graphics (just a bit),
 - networking (Y'know what's cooler than having a bootloader? Having a bootloader that can negotiate a DHCP lease and, if desired, boot an O/S over the network),
 - configuring hardware, and (of course)
