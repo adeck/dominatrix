@@ -11,8 +11,10 @@ Currently, my focus for this project is on:
 - making a simple interactive REPL for the bootloader,
 - storing config information on the first few sectors of the drive,
 - scanning the drive for potentially viable operating systems and branching to them,
+- graphics (just a bit),
+- networking (Y'know what's cooler than having a bootloader? Having a bootloader that can negotiate a DHCP lease and, if desired, boot an O/S over the network),
 - configuring hardware, and (of course)
 - entering a more conventional operating mode (in preparation for more traditional operating system operation).
 
-The bootloader itself is all assembly thus far, but once I've reverse-engineered the BIOS interrupt routines (which I'll do by copying the BIOS from 0xFFFF0000 --> 0xFFFFFFFF onto some free drive sectors and then disassembling) I'll be able to easily transition to C or C++. OTOH, I'll only see transitioning to an HLL as necessary IFF the bootloader starts to bloat to >2 KB, and since I like assembly well enough, it'll probably be at least a month before I care enough to make that happen.
+The bootloader itself is all assembly thus far, but once I have a large enough corpus of assembly subroutines / procedures to make subsequent development in C not require constantly switching between assembly and C, then the cross compilation may begin.
 
