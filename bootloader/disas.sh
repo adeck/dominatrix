@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-objdump -b binary -m i386 -D prog
+exe=build/bin/trix.bootloader
+objdump -b binary -m i386 -D $exe
 

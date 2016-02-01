@@ -1,6 +1,6 @@
 
 # specific files we don't need
-/bootloader/Makefile
+/bootloader/build/bin/
 
 # types of files we don't need
 ## cult of vi
