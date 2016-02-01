@@ -1,8 +1,8 @@
 
 .RECIPEPREFIX=>
 
-EXEC=prog
-ASRC=test
+EXEC=bootloader
+ASRC=main
 AS=as
 LD=ld
 LDFLAGS=--oformat binary -Ttext=0x7C00

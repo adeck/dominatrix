@@ -1,0 +1,13 @@
+
+# specific files we don't need
+/bootloader/Makefile
+
+# types of files we don't need
+## cult of vi
+*.swp
+## object files; don't need 'em, don't want 'em
+*.o
+# the bootloader
+*.boot
+
+
