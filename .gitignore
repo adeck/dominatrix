@@ -1,5 +1,6 @@
 
-# specific files we don't need
+# specific files / directories we don't need
+/bootloader/build/obj/
 /bootloader/build/bin/
 
 # types of files we don't need
@@ -7,7 +8,10 @@
 *.swp
 ## object files; don't need 'em, don't want 'em
 *.o
-# the bootloader
+## the bootloader
 *.boot
+## scons leaves these everywhere. They're file hashes to determine when
+##  rebuilding is necessary.
+.sconsign.dblite
 
 

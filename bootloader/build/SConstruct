@@ -1,0 +1,14 @@
+#!/usr/bin/env python2
+
+
+env = Environment()
+exe = 'trix.boot'
+
+Export(['env', 'exe'])
+
+objs = env.SConscript('src/compile.scons',variant_dir='obj', duplicate=0)
+Export('objs')
+env.SConscript('obj/link.scons',variant_dir='bin', duplicate=0)
+
+
+

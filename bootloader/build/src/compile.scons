@@ -1,0 +1,9 @@
+#!/usr/bin/env python2
+
+Import('env')
+
+srcs = Glob('*.s')
+objs = env.Object(srcs,variant_dir='obj', duplicate=0)
+
+Return('objs')
+
