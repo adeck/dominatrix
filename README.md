@@ -7,6 +7,7 @@ But right now...
 ----------------
 
 ...It's just a simple bootloader.
+
 Currently, my focus for this project is on:
 - making a simple interactive REPL for the bootloader,
 - storing config information on the first few sectors of the drive,
