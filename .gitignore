@@ -1,6 +1,5 @@
 
 # specific files / directories we don't need
-/bootloader/build/obj/
 /bootloader/build/bin/
 
 # types of files we don't need
